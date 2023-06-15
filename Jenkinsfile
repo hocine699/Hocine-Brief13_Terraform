@@ -12,7 +12,7 @@ pipeline {
         stage ('Terraform Init') {
             steps {
                 script {
-                    sh "cd staging-env && terraform init"
+                    sh "cd StagingEnvoronment && terraform init"
                 }                
             }
         }
@@ -20,7 +20,7 @@ pipeline {
         stage ('Terraform Plan') {
             steps {
                 script {
-                    sh "cd staging-env && terraform plan"
+                    sh "cd StagingEnvoronment && terraform plan"
                 }
             }
         }
@@ -28,7 +28,7 @@ pipeline {
         stage ('Terraform Apply') {
             steps {
                 script {
-                    sh "cd staging-env && terraform ${params.Action} -auto-approve && terraform -output -raw"
+                    sh "cd StagingEnvoronment && terraform ${params.Action} -auto-approve && terraform -output -raw"
                     sh "StagingPublicIP=${terraform output -raw The_webserver_Public_ip}"
                 }    
             }
