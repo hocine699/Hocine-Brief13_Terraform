@@ -1,20 +1,18 @@
 pipeline {
     agent any
-  
-      stages {
-        
+    stages {
         stage ('Terraform init') {
             steps {
                 script {
-                    sh "cd StagingEnvoronment && terraform init"
+                    sh "cd StagingEnvironment && terraform init"
                 }                
             }
         }
-    
+
         stage ('Terraform Plan') {
             steps {
                 script {
-                    sh "cd StagingEnvoronment && terraform plan"
+                    sh "cd StagingEnvironment && terraform plan"
                 }
             }
         }
@@ -22,19 +20,18 @@ pipeline {
         stage ('Terraform Apply') {
             steps {
                 script {
-                    sh "cd StagingEnvoronment && terraform apply -auto-approve"
+                    sh "cd StagingEnvironment && terraform apply -auto-approve"
                 }    
             }
         } 
+        
         stage ('reponseok') {
             steps {
-                
-                    input message: 'test bon ?', ok: 'ok'
-                }
+                input message: 'test bon ?', ok: 'ok'
+            }
         }
-}
-
- stage ('Terraform-Init') {
+        
+        stage ('Terraform-Init') {
             steps {
                 script {
                     sh "cd ProdEnvironment && terraform init"
@@ -57,4 +54,5 @@ pipeline {
                 }    
             }
         } 
+    }
 }
