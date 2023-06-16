@@ -4,7 +4,7 @@ pipeline {
         stage ('Terraform init') {
             steps {
                 script {
-                    sh "cd StagingEnvironment && terraform init"
+                    sh "cd StagingEnvoronment && terraform init"
                 }                
             }
         }
@@ -12,7 +12,7 @@ pipeline {
         stage ('Terraform Plan') {
             steps {
                 script {
-                    sh "cd StagingEnvironment && terraform plan"
+                    sh "cd StagingEnvoronment && terraform plan"
                 }
             }
         }
@@ -20,7 +20,7 @@ pipeline {
         stage ('Terraform Apply') {
             steps {
                 script {
-                    sh "cd StagingEnvironment && terraform apply -auto-approve"
+                    sh "cd StagingEnvoronment && terraform apply -auto-approve"
                 }    
             }
         } 
