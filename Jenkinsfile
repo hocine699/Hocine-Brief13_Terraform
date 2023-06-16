@@ -1,15 +1,9 @@
 pipeline {
     agent any
   
-    parameters
-    {
-        booleanParam(defaultValue: true, description: '', name: 'Deploy')
-        choice(choices: ['apply', 'destroy'], name: 'Action')
-    }
-    
-    stages {
+      stages {
         
-        stage ('Terraform Init') {
+        stage ('Terraform init') {
             steps {
                 script {
                     sh "cd StagingEnvoronment && terraform init"
@@ -28,10 +22,39 @@ pipeline {
         stage ('Terraform Apply') {
             steps {
                 script {
-                    sh "cd StagingEnvoronment && terraform ${params.Action} -auto-approve && terraform -output -raw"
-                    sh "StagingPublicIP=${terraform output -raw The_webserver_Public_ip}"
+                    sh "cd StagingEnvoronment && terraform apply -auto-approve"
                 }    
             }
         } 
+        stage ('reponseok') {
+            steps {
+                
+                    input message: 'test bon ?', ok: 'ok'
+                }
+        }
 }
+
+ stage ('Terraform-Init') {
+            steps {
+                script {
+                    sh "cd ProdEnvironment && terraform init"
+                }                
+            }
+        }
+    
+        stage ('Terraform-Plan') {
+            steps {
+                script {
+                    sh "cd ProdEnvironment && terraform plan"
+                }
+            }
+        }
+
+        stage ('Terraform-Apply') {
+            steps {
+                script {
+                    sh "cd ProdEnvironment && terraform apply -auto-approve"
+                }    
+            }
+        } 
 }
