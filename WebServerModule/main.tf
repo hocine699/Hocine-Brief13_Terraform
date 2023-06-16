@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "webserver" {
-   name = "Hocine-nginx1-${var.environment}"
+   name = "Hocine-brief14-${var.environment}"
    location = var.location
 }
 
@@ -76,7 +76,7 @@ resource "azurerm_network_interface" "webserver" {
 
 resource "azurerm_linux_virtual_machine" "nginx" {
    size = var.instance_size
-   name = "VM-nginx"
+   name = "VM-brief14"
    resource_group_name = azurerm_resource_group.webserver.name
    location = azurerm_resource_group.webserver.location
    custom_data = base64encode(file("init-script.sh"))
@@ -91,7 +91,7 @@ resource "azurerm_linux_virtual_machine" "nginx" {
        version = "latest"
    }
 
-   computer_name = "nginx"
+   computer_name = "brief14"
    admin_username = "hocine"
    admin_password = "@dmin2023."
    disable_password_authentication = false
