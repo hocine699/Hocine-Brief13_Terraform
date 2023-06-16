@@ -5,4 +5,4 @@ sudo apt install curl
 sudo curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 #Creating container
-sudo docker run -d -p 80:80 --name hocine hocinho699/hocine-nginx
+sudo docker run -d -p 80:80 --name hocine hocinho699/hocine-brief14
