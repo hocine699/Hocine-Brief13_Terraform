@@ -13,7 +13,7 @@ Pour la récupération des données pour les credentials Azure :
   - Après l'intallation de docker, il est imortant de d'executer ces commandes afin de donner des autorisations pour l'utilisation du sudo :
   - sudo usermod -aG docker $USER
   - sudo chown $USER:docker /var/run/docker.sock
-  - bsudo chmod 666 /var/run/docker.sock
+  - sudo chmod 666 /var/run/docker.sock
 
 1- Dans Jenkins, créer un nouveau projet pipeline, et renseigner les champs GitHub
 Project dans Général, GitHub hook trigger dans Build Triggers, et dans le champs
